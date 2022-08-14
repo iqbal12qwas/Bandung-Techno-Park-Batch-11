@@ -1,12 +1,12 @@
 <div class="create-form">
     <div class="row">
-        <div class="col-lg-6">
+        <!-- <div class="col-lg-6">
             <div class="form-group">
                 <label for="month">Month<span style="color:#ff0000">*</span></label>
                 <select type="text" class="form-control form-activity" id="month" name="month" required></select>
             </div>
-        </div>
-        <div class="col-lg-6">
+        </div> -->
+        <div class="col-lg-12">
             <label for="method">Method<span style="color:#ff0000">*</span></label>
             <select type="text" class="form-control form-activity" id="method" name="method" required></select>
         </div>

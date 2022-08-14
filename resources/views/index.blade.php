@@ -78,24 +78,6 @@
     function showCreateForm() {
         $.get("{{ url('create') }}", {}, function(data, status) {
 
-            // Select Month
-            $.ajax({
-                type: "GET",
-                url: "{{ url('month') }}",
-                contentType: "application/json",
-                dataType: 'json',
-                success: function(response) {
-                    var month = $('#month');
-                    month.empty();
-                    month.append('<option value="">Choose</option>');
-                    for (var i = 0; i < response.length; i++) {
-                        month.append('<option value=' + response[i].id + '>' + response[i].name +
-                            '</option>');
-                    }
-                    month.change();
-                }
-            });
-
             // Select Method
             $.ajax({
                 type: "GET",

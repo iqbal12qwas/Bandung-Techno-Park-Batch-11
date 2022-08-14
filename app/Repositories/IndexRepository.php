@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use App\Models\ActivityModel;
 use App\Models\MonthModel;
 use App\Models\MethodModel;
@@ -10,6 +11,16 @@ use Carbon\Carbon;
 
 class IndexRepository 
 {
+    private function getOnlyMonthNumber($date) {
+        $date_start = Carbon::parse($date)->format('m');
+        $firstStringCharacter = substr($date_start, 0, 1);
+        if ($firstStringCharacter == '0') {
+            $date_start = Str::substr($date_start, 1);
+        }
+        
+        return $date_start;
+    }
+
     public function readActivity()
     {
         $data = ActivityModel::join('tb_months', 'tb_months.id', '=', 'tb_activities.id_months')
@@ -52,7 +63,7 @@ class IndexRepository
 
     public function saveActivity($request)
     {
-        $data['id_months'] = $request->month;
+        $data['id_months'] = $this->getOnlyMonthNumber($request->date_start);
         $data['id_methods'] = $request->method;
         $data['activity'] = $request->activity;
         $data['date_start'] = $request->date_start;
@@ -73,7 +84,7 @@ class IndexRepository
     public function updateActivity($request, $id)
     {
         $data = ActivityModel::findOrFail($id);
-        $data->id_months = $request->month;
+        $data->id_months = $this->getOnlyMonthNumber($request->date_start);
         $data->id_methods = $request->method;
         $data->activity = $request->activity;
         $data->date_start = $request->date_start;

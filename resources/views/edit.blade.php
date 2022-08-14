@@ -1,18 +1,6 @@
 <div class="edit-form">
     <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="month">Month<span style="color:#ff0000">*</span></label>
-                <select type="text" class="form-control form-activity" id="month" name="month" required>
-                    @foreach($data_month as $item)
-                    <option value="{{ $item->id }}" {{ $item->id == $data->id_months ? 'selected' : '' }}>
-                        {{ $item->name }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <label for="method">Method<span style="color:#ff0000">*</span></label>
             <select type="text" class="form-control form-activity" id="method" name="method" required>
                 @foreach($data_method as $item)
